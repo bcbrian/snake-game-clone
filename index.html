@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Snake Game Clone</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+      integrity="sha256-gvEnj2axkqIj4wbYhPjbWV7zttgpzBVEgHub9AAZQD4="
+      crossorigin="anonymous"
+    />
+    <style>
+      .title {
+        font-size: 24px;
+        margin: 40px auto;
+        width: 300px;
+        text-align: center;
+      }
+
+      .game-container {
+        width: 300px;
+        height: 300px;
+        background-color: rebeccapurple;
+        margin: 40px auto;
+
+        position: relative;
+      }
+
+      .snake {
+        width: 10px;
+        height: 10px;
+        background-color: hotpink;
+
+        position: absolute;
+        left: 140px;
+        top: 140px;
+      }
+
+      .mouse {
+        width: 10px;
+        height: 10px;
+        background-color: aqua;
+
+        position: absolute;
+        left: 240px;
+        top: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title">Snake Game Clone</div>
+    <div class="game-container">
+      <div id="snake-0" class="snake"></div>
+      <div class="mouse"></div>
+    </div>
+    <script>
+      function startGame() {
+        const snakeLength = 1;
+        let hasGameStarted = false; // true
+
+        const snake = [
+          {
+            x: 140,
+            y: 140
+          }
+        ];
+
+        // 1 way is to add and pop the values and rerender
+        // 2 way is the add and pop the elements them selves boom...
+        document.addEventListener("keydown", function(event) {
+          if (event.code === "ArrowDown") {
+            snake[0].y = snake[0].y + 10;
+            console.log("move the snake[0] down!", snake[0]);
+          }
+          if (event.code === "ArrowUp") {
+            snake[0].y = snake[0].y - 10;
+            console.log("move the snake[0] up!", snake[0]);
+          }
+          if (event.code === "ArrowLeft") {
+            snake[0].x = snake[0].x - 10;
+            console.log("move the snake[0] left!", snake[0]);
+          }
+          if (event.code === "ArrowRight") {
+            snake[0].x = snake[0].x + 10;
+            console.log("move the snake[0] right!", snake[0]);
+          }
+          const snake0El = document.getElementById("snake-0");
+          snake0El.style.top = snake[0].y + "px";
+          snake0El.style.left = snake[0].x + "px";
+          console.log(snake0El.style);
+        });
+      }
+
+      startGame();
+    </script>
+  </body>
+</html>
